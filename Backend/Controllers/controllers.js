@@ -10,6 +10,7 @@ const AddProcess = async (req, res) => {
     startTime: null,
     finishTime: null,
     turnaroundTime: null,
+    waitingTime:null
   };
   process.push(newProcess);
   console.log(process);
@@ -23,6 +24,7 @@ const RunSimulation = async (req, res) => {
   let currentTime = 0;
   let completedProcesses = [];
   let totalTurnaroundTime = 0;
+  let totalWaitingTime = 0;
 
   while (process.length > 0) {
     let shortestProcess = null;
@@ -57,7 +59,9 @@ const RunSimulation = async (req, res) => {
         shortestProcess.finishTime = currentTime + 1;
         shortestProcess.turnaroundTime =
           shortestProcess.finishTime - shortestProcess.arrivalTime;
+        shortestProcess.waitingTime = shortestProcess.turnaroundTime - shortestProcess.burstTime;
         totalTurnaroundTime += shortestProcess.turnaroundTime;
+        totalWaitingTime += shortestProcess.waitingTime;
         completedProcesses.push(shortestProcess);
         process.splice(shortestIndex, 1);
       }
@@ -66,7 +70,8 @@ const RunSimulation = async (req, res) => {
   }
 
   const averageTurnaroundTime = totalTurnaroundTime / completedProcesses.length;
-  res.json({ completedProcesses, averageTurnaroundTime });
+  const avgerageWaitingTime = totalWaitingTime / completedProcesses.length;
+  res.json({ completedProcesses, averageTurnaroundTime, avgerageWaitingTime });
 };
 
 module.exports = { AddProcess, RunSimulation };
