@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import './App.css'
+import DataInput from './DataInput'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -8,10 +9,8 @@ function App() {
   return (
     <>
       <div>
-      <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-        </div>
+     <DataInput />
+      </div>
     </>
   )
 }
