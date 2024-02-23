@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import ReactGantt, { GanttRow } from 'react-gantt';
+
 
 
 const DataInput = () => {
@@ -11,7 +11,7 @@ const DataInput = () => {
 
   const handleAddProcess = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/add-process', { arrivalTime, burstTime });
+      const response = await axios.post('http://localhost:3000/api/add-process', { arrivalTime, burstTime });
       setProcesses(response.data.process);
     } catch (error) {
       console.error('Error adding process:', error);
@@ -20,7 +20,7 @@ const DataInput = () => {
 
   const handleRunSimulation = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/run-simulation');
+      const response = await axios.post('http://localhost:3000/api/run-simulation');
       setSimulationResult(response.data);
     } catch (error) {
       console.error('Error running simulation:', error);
@@ -67,16 +67,6 @@ const DataInput = () => {
           <h2 className="text-2xl font-bold mb-4">Simulation Results</h2>
           <p>Average Turnaround Time: {simulationResult.avgTAT}</p>
           <p>Average Waiting Time: {simulationResult.avgWaitingTime}</p>
-          <ReactGantt>
-            {simulationResult.completedProcess.map((process) => (
-              <GanttRow
-                key={process.id}
-                label={`Process ${process.id}`}
-                start={process.startTime}
-                end={process.finishTime}
-              />
-            ))}
-          </ReactGantt>
         </div>
       )}
 
