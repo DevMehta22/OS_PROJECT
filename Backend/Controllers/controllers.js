@@ -13,7 +13,6 @@ const AddProcess = async (req, res) => {
     waitingTime:null
   };
   process.push(newProcess);
-  console.log(process);
   res.status(201).json({process});
 };
 
@@ -37,6 +36,7 @@ const RunSimulation = async (req, res) => {
         break;
       }
     }
+    console.log(sp);
     if (sp != null) {
       if (sp.startTime == null) {
         sp.startTime = currentTime;
