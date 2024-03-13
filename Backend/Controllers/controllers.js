@@ -1,21 +1,20 @@
 let process = [];
 
 const AddProcess = async (req, res) => {
-  const { arrivalTime, burstTime } = req.body;
+  const { name, arrivalTime, burstTime } = req.body;
   const newProcess = {
     id: process.length + 1,
+    name: parseInt(name),
     arrivalTime: parseInt(arrivalTime),
     burstTime: parseInt(burstTime),
-    remainingTime: parseInt(burstTime),
-    startTime: null,
-    finishTime: null,
     turnaroundTime: null,
-    waitingTime:null
+    waitingTime: null
   };
   process.push(newProcess);
   console.log(process);
-  res.status(201).json({process});
+  res.status(201).json({ process: process });
 };
+
 
 const RunSimulation = async (req, res) => {
   process.sort((a, b) => a.arrivalTime - b.arrivalTime);
@@ -59,5 +58,8 @@ const RunSimulation = async (req, res) => {
 
   res.status(201).json({completedProcess,avgTAT,avgWaitingTime});
 };
+
+
+
 
 module.exports = { AddProcess, RunSimulation };
