@@ -85,7 +85,7 @@ const DataInput = () => {
       )}
 
       <div className="my-8">
-        <h2 className="text-2xl font-bold mb-4">Processes</h2>
+        <h2 className="text-3xl font-bold mb-4">Processes</h2>
         <table className="border-collapse border border-gray-400">
           <thead>
             <tr>
