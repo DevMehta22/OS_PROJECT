@@ -7,16 +7,16 @@ const AddProcess = async (req, res) => {
     name: parseInt(name),
     arrivalTime: parseInt(arrivalTime),
     burstTime: parseInt(burstTime),
+    remainingTime: parseInt(burstTime),
+    startTime: null,
+    finishTime: null,
     turnaroundTime: null,
-    waitingTime: null
+    waitingTime:null
   };
   process.push(newProcess);
-<<<<<<< HEAD
   console.log(process);
   res.status(201).json({ process: process });
-=======
   res.status(201).json({process});
->>>>>>> 5d1aa34dc723a943265a7f9550ac9c4ad3f74f95
 };
 
 
