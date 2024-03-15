@@ -10,7 +10,7 @@ const DataInput = () => {
 
   const handleAddProcess = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/api/add-process', {
+      const response = await axios.post('http://localhost:3000/api/srtn/add-process', {
         arrivalTime,
         burstTime,
         name 
@@ -25,7 +25,7 @@ const DataInput = () => {
 
   const handleRunSimulation = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/api/run-simulation');
+      const response = await axios.post('http://localhost:3000/api/srtn/run-simulation');
       setSimulationResult(response.data);
     } catch (error) {
       console.error('Error running simulation:', error);
@@ -81,6 +81,30 @@ const DataInput = () => {
           <h2 className="text-2xl font-bold mb-4">Simulation Results</h2>
           <p>Average Turnaround Time: {simulationResult.avgTAT}</p>
           <p>Average Waiting Time: {simulationResult.avgWaitingTime}</p>
+          <table className="border-collapse border border-gray-400">
+          <thead>
+            <tr>
+              <th className="border border-gray-400 px-4 py-2">Process Name</th>
+              <th className="border border-gray-400 px-4 py-2">Arrival Time</th>
+              <th className="border border-gray-400 px-4 py-2">Burst Time</th>
+              <th className="border border-gray-400 px-4 py-2"> Time</th>
+              <th className="border border-gray-400 px-4 py-2">Turnaround Time</th>
+              <th className="border border-gray-400 px-4 py-2">Waiting Time</th>
+            </tr>
+          </thead>
+          <tbody>
+        {simulationResult.completedProcess.map((process) => (
+          <tr key={process.id}>
+            <td className="border border-gray-400 px-4 py-2">{process.name}</td>
+            <td className="border border-gray-400 px-4 py-2">{process.arrivalTime}</td>
+            <td className="border border-gray-400 px-4 py-2">{process.burstTime}</td>
+            <td className="border border-gray-400 px-4 py-2">{process.finishTime}</td>
+            <td className="border border-gray-400 px-4 py-2">{process.turnaroundTime}</td>
+            <td className="border border-gray-400 px-4 py-2">{process.waitingTime}</td> 
+          </tr>
+        ))}
+        </tbody>
+        </table>
         </div>
       )}
 
