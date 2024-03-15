@@ -16,7 +16,7 @@ const AddProcess = async (req, res) => {
   process.push(newProcess);
   console.log(process);
   res.status(201).json({ process: process });
-  res.status(201).json({process});
+  // res.status(201).json({process});
 };
 
 
