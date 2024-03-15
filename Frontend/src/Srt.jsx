@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const DataInput = () => {
+const Srt = () => {
   const [arrivalTime, setArrivalTime] = useState('');
   const [burstTime, setBurstTime] = useState('');
   const [name, setname] = useState('');
@@ -137,4 +137,4 @@ const DataInput = () => {
   );
 };
 
-export default DataInput;
+export default Srt;
