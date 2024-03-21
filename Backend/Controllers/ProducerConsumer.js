@@ -16,7 +16,7 @@ class BoundedBuffer{
             await new Promise(resolve => setTimeout(resolve, 100));
         }
         this.buffer.push(item);
-        // console.log(`Produced item: ${item}, Buffer: ${this.buffer}`);
+        console.log(`Produced item: ${item}, Buffer: ${this.buffer}`);
         output.push(`Produced item: ${item}, Buffer: ${this.buffer}`);
         this.count++;
         this.lock.release();
@@ -28,7 +28,7 @@ class BoundedBuffer{
             await new Promise(resolve => setTimeout(resolve, 100));
         }
         const item = this.buffer.shift();
-        // console.log(`Consumed item:${item}, Buffer:${this.buffer}`);
+        console.log(`Consumed item:${item}, Buffer:${this.buffer}`);
         output.push(`Consumed item: ${item}, Buffer: ${this.buffer}`);
         this.count--;
         this.lock.release();
@@ -43,14 +43,14 @@ function sleep(ms) {
 async function producer(buffer, items) { 
     for (const item of items) {
         await buffer.produce(item);
-        sleep(Math.random() * 1000);
+        await sleep(1000);
     }
 }
 
 async function consumer(buffer, count) {
     for (let i = 0; i < count; i++) {
         await buffer.consume();
-        sleep(Math.random() * 1000);
+        await sleep(3000);
     }
 }
 
@@ -66,11 +66,11 @@ async function consumer(buffer, count) {
 // }
 
 const simulate = async(req,res)=>{
-    const buffer = new BoundedBuffer(5);
-    const { items, count } = req.body; 
+    let buffer = new BoundedBuffer(5);
+    let { items, count } = req.body; 
 
-    try{const producer1 = producer(buffer,items);
-    const consumer1 = consumer(buffer,count);
+    try{let producer1 = producer(buffer,items);
+    let consumer1 = consumer(buffer,count);
     await Promise.all([producer1,consumer1])
     res.send(output);
     }catch(err){
