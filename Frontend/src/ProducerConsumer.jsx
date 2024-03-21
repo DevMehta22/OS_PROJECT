@@ -8,6 +8,7 @@ const ProducerConsumer = () => {
 
   const simulate = async () => {
     try {
+      setOutput(["Simulating..."]);
       const response = await axios.post('http://localhost:3000/api/prodcon/simulate', { items: items.split(','), count: parseInt(count) });
       setOutput(response.data);
     } catch (error) {
