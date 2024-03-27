@@ -32,6 +32,56 @@ const Srt = () => {
     }
   };
 
+  const renderGanttChart = (simulationResult) => {
+    if (!simulationResult || !simulationResult.completedProcess) {
+      return null; // Return null if simulationResult is not available or completedProcess is undefined
+    }
+  
+    const colors = ['#007bff', '#28a745', '#dc3545', '#ffc107', '#17a2b8', '#6610f2', '#28a745', '#007bff', '#dc3545', '#ffc107']; 
+    let totalBurstTime = 0;
+    for (let i = 0; i < simulationResult.completedProcess.length; i++) {
+      totalBurstTime += simulationResult.completedProcess[i].burstTime;
+    }
+  
+    let startTime = 0; 
+    const bars = simulationResult.completedProcess.map((process, index) => {
+      const width = (process.burstTime / totalBurstTime) * 100;
+      const color = colors[index % colors.length]; 
+      const barStyle = {
+        width: `${width}%`,
+        background: color,
+        color: '#fff',
+        textAlign: 'center',
+        border: '2px solid #333',
+        position: 'relative',
+      };
+  
+      // Calculate start time based on completion time of previous process
+      let processStartTime = startTime;
+      startTime += process.burstTime;
+  
+      return (
+        <div key={index} style={barStyle}>
+          <div>{process.name}</div>
+          <div style={{textAlign:'left'}}>ST: {process.arrivalTime}</div>
+          <div style={{textAlign:'right'}}>FT: {process.finishTime}</div>
+        </div>
+      ); 
+    });
+  
+    return (
+      <div style={{ display: 'flex', marginTop: '20px' }} className="gantt">
+        {bars}
+      </div>
+    );
+  };
+  
+
+  
+  
+  
+
+
 
 
   return (
@@ -81,6 +131,7 @@ const Srt = () => {
           <h2 className="text-2xl font-bold mb-4">Simulation Results</h2>
           <p>Average Turnaround Time: {simulationResult.avgTAT}</p>
           <p>Average Waiting Time: {simulationResult.avgWaitingTime}</p>
+          {renderGanttChart(simulationResult)}
           <table className="border-collapse border border-gray-400">
           <thead>
             <tr>
@@ -132,6 +183,8 @@ const Srt = () => {
 </tbody>
 
         </table>
+        
+
       </div>
     </div>
   );
