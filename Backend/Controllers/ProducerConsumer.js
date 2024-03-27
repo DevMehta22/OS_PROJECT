@@ -2,7 +2,7 @@ const {Mutex} = require("async-mutex")
 
 let output = [];
 
-class BoundedBuffer{
+class Moniter{
     constructor(size){
         this.size = size;
         this.buffer = [];
@@ -55,7 +55,7 @@ async function consumer(buffer, count) {
 }
 
 // const simulate = async(res)=>{
-//     const buffer = new BoundedBuffer(5);
+//     const buffer = new Moniter(5);
 //     const producer1 = producer(buffer, [1, 2, 3, 4, 5, 6]);
 //     const producer2 = producer(buffer, [7, 8, 9, 10]);
 //     const consumer1 = consumer(buffer, 8);
@@ -66,7 +66,7 @@ async function consumer(buffer, count) {
 // }
 
 const simulate = async(req,res)=>{
-    let buffer = new BoundedBuffer(5);
+    let buffer = new Moniter(5);
     let { items, count } = req.body; 
 
     try{let producer1 = producer(buffer,items);

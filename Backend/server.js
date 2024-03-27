@@ -5,6 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const routes= require('./Routes/routes');
 const prodConRoutes = require("./Routes/ProdConRoutes");
+const sstfRoutes = require('./Routes/SSTF_routes');
 
 const port = 3000
 
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/srtn',routes);
 app.use('/api/prodcon',prodConRoutes);
+app.use('/api/sstf',sstfRoutes);
 
 
 app.listen(port,()=>{
