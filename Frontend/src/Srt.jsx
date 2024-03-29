@@ -76,18 +76,10 @@ const Srt = () => {
     );
   };
   
-
-  
-  
-  
-
-
-
-
   return (
     <div className="container mx-auto">
       <div className="my-8">
-        <h1 className="text-3xl font-bold mb-4">Process Scheduler</h1>
+        <h1 className="text-3xl font-bold mb-4">Shortest Remaining Time ALgorithm</h1>
         <h1 className="text-3xl font-bold mb-4">SRTN</h1>
         <div className="flex space-x-4">
           <input
