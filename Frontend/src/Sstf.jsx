@@ -105,7 +105,7 @@ const Sstf = () => {
         </div>
       </form>
       {error && <p>{error}</p>}
-      <div style={{width:'500px', height:'500px', alignItems:'center'  }}>
+      <div style={{width:'500px', height:'500px', alignItems:'center'}}>
         <canvas id="diskGraph" width="500" height="500"></canvas>
       </div>
       <h3 className='text-center font-bold'>Final Queue:</h3>
