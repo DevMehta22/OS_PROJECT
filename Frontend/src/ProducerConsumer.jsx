@@ -17,37 +17,44 @@ const ProducerConsumer = () => {
   };
 
   return (
-    <div className="container mx-auto mt-8">
-      <h1 className="text-3xl font-bold mb-4">Producer Consumer using Monitors</h1>
-      <div className="flex items-center justify-center">
-        <input
-          type="text"
-          placeholder="Enter items (comma-separated)"
-          className="border p-2 mr-2"
-          value={items}
-          onChange={(e) => setItems(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Enter count"
-          className="border p-2 mr-2"
-          value={count}
-          onChange={(e) => setCount(e.target.value)}
-        />
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={simulate}
-        >
-          Simulate
-        </button>
-      </div>
-      <div className="mt-4">
-        <h2 className="text-lg font-bold">Output:</h2>
-        <ul>
-          {output.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
+    <div style={{ backgroundColor: 'black', minHeight: '200vh', color: 'white' }}>
+
+      <div className="container mx-auto">
+        <div className='text-center'>
+          <h1 className="text-3xl font-bold mb-4">Producer Consumer Bounded Buffer Problems with Monitors</h1>
+        </div>
+        <div className="flex gap-4 items-center justify-center mt-14">
+          <input
+            type="text"
+            placeholder="Enter items (comma-separated)"
+            value={items}
+            onChange={(e) => setItems(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-400"
+            style={{ backgroundColor: 'black', color: 'white', width: 'auto' }}
+          />
+          <input
+            type="text"
+            placeholder="Enter count"
+            value={count}
+            onChange={(e) => setCount(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-400"
+            style={{ backgroundColor: 'black', color: 'white', width: 'auto' }}
+          />
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={simulate}
+          >
+            Simulate
+          </button>
+        </div>
+        <div className=" text-center mt-6">
+          <h2 className="text-lg font-bold">Output:</h2>
+          <ul className='mt-5'>
+            {output.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
