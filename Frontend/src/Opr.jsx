@@ -4,17 +4,21 @@ import axios from 'axios'; // Import Axios for making HTTP requests
 const Opr = () => {
   // State variables to store Frames and Pages data, miss and hit counts
   const [frames, setFrames] = useState('');
-  const [pages, setPages] = useState('');
+  const [pages, setPages] = useState(['']);
   const [miss, setMiss] = useState(null);
   const [hit, setHit] = useState(null);
 
   // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     try {
-      // Make a POST request to backend endpoint with Frames and Pages data
-      const response = await axios.post('http://localhost:3000/api/optimalpage/simulate', { Frames: frames, pages: pages });
+     
+      const pagesArray = pages.split(',').map(item => parseInt(item.trim()));
+  
+      // Make a POST request to backend endpoint with Frames as integer and Pages as an array
+      const response = await axios.post('http://localhost:3000/api/optimalpage/simulate', { Frames: parseInt(frames), pages: pagesArray });
+      
       // Update miss and hit counts based on the response
       setMiss(response.data.Miss);
       setHit(response.data.Hit);
@@ -22,6 +26,7 @@ const Opr = () => {
       console.error('Error:', error);
     }
   };
+  
 
   return (
     <div className="bg-black text-black min-h-screen py-8 flex flex-col justify-center items-center">

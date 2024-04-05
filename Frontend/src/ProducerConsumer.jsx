@@ -23,7 +23,10 @@ const ProducerConsumer = () => {
         <div className='text-center'>
           <h1 className="text-3xl font-bold mb-4">Producer Consumer Bounded Buffer Problems with Monitors</h1>
         </div>
-        <div className="flex gap-4 items-center justify-center mt-14">
+        <div className="flex flex-col gap-4 items-center justify-center mt-14">
+          <div>
+
+          <label className='font-semibold mr-2 text-xl'>Enter items (comma-separated):</label>
           <input
             type="text"
             placeholder="Enter items (comma-separated)"
@@ -32,6 +35,10 @@ const ProducerConsumer = () => {
             className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-400"
             style={{ backgroundColor: 'black', color: 'white', width: 'auto' }}
           />
+          </div>
+          <div>
+
+          <label className='font-semibold mr-2 text-xl'>Number of Items to be consumed :</label>
           <input
             type="text"
             placeholder="Enter count"
@@ -40,12 +47,16 @@ const ProducerConsumer = () => {
             className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-400"
             style={{ backgroundColor: 'black', color: 'white', width: 'auto' }}
           />
+          </div>
+          <div>
+
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onClick={simulate}
           >
             Simulate
           </button>
+          </div>
         </div>
         <div className=" text-center mt-6">
           <h2 className="text-lg font-bold">Output:</h2>
