@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import producer from './assets/Producer_Consumer.png';
+import producer from './assets/P&C.jpg';
+import Disc from './assets/Disc.jpg';
+import sstf from './assets/STRN.jpg';
+import opr from './assets/OPR.jpg';
 
 const Home = () => {
   return (
@@ -10,7 +13,7 @@ const Home = () => {
       <div className="flex justify-between">
         <div className="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden m-4 transition-transform hover:scale-105">
           <img
-            src= {producer}
+            src= {sstf}
             alt="SRTN"
             className="w-full h-32 object-cover"
           />
@@ -43,7 +46,7 @@ const Home = () => {
 
         <div className="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden m-4 transition-transform hover:scale-105">
           <img
-            src= {producer}
+            src= {Disc}
             alt="SSTF"
             className="w-full h-32 object-cover"
           />
@@ -60,7 +63,7 @@ const Home = () => {
 
         <div className="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden m-4 transition-transform hover:scale-105">
           <img
-            src= {producer}
+            src= {opr}
             alt="OPR"
             className="w-full h-32 object-cover"
           />
