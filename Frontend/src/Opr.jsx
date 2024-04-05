@@ -24,9 +24,9 @@ const Opr = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-4">Optimal Page Replacement Algorithm</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="bg-black text-black min-h-screen py-8 flex flex-col justify-center items-center">
+      <h1 className="text-3xl font-bold mb-4 text-white">Optimal Page Replacement Algorithm</h1>
+      <form onSubmit={handleSubmit} className="space-y-4">
         <div className="mb-4">
           <label htmlFor="frames" className="block text-sm font-medium text-gray-700">Frames:</label>
           <input
@@ -54,8 +54,8 @@ const Opr = () => {
       {/* Display miss and hit counts if calculated */}
       {miss !== null && hit !== null && (
         <div className="mt-4">
-          <p className='font-bold text-2xl'>Miss: {miss}</p>
-          <p className='font-bold text-2xl'>Hit: {hit}</p>
+          <p className='font-bold text-2xl text-white'>Miss: {miss}</p>
+          <p className='font-bold text-2xl text-white'>Hit: {hit}</p>
         </div>
       )}
     </div>
