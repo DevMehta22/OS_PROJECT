@@ -51,14 +51,18 @@ const Sstf = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/sstf/simulate', {
+      let tracks = trackNos.split(',').map(track => parseInt(track.trim()))
+      console.log(Math.max(...tracks))
+      if (parseInt(endTrack)<Math.max(...tracks)){
+        setError("End Track should be greater than the maximum track number in queue");
+      }else{const response = await axios.post('http://localhost:3000/api/sstf/simulate', {
         Track_nos: trackNos.split(',').map(track => parseInt(track.trim())),
         Start_Track: parseInt(startTrack),
         End_Track: parseInt(endTrack),
         Header_position: parseInt(headerPosition)
       });
       setFinalQueue(response.data['final queue']);
-      setError('');
+      setError('');}
     } catch (err) {
       setError('Invalid data');
       console.error(err);
