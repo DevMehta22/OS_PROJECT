@@ -66,7 +66,7 @@ async function consumer(buffer, count) {
 // }
 
 const simulate = async(req,res)=>{
-    let buffer = new Moniter(5);
+    let buffer = new Moniter(15);
     let { items, count } = req.body; 
 
     try{let producer1 = producer(buffer,items);
